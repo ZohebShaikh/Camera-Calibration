@@ -25,9 +25,7 @@ class RemoveDistortion:
         # crop the image
         x, y, w, h = self.calibrate.RegionOfInterest
         dst = dst[y : y + h, x : x + w]
-        cv.imwrite(
-            os.path.join("test_images/", filename + "_undistorted.png"), dst
-        )
+        cv.imwrite(os.path.join("test_images/", filename + "_undistorted.png"), dst)
 
     def undistort_method_2(self, filename):
         img = cv.imread(os.path.join("test_images/", filename))
@@ -53,9 +51,9 @@ class RemoveDistortion:
         original = cv.imread(os.path.join("test_images/", filename))
         undistorted = cv.imread(os.path.join("test_images/", compare))
         height = undistorted.shape[0]
-        width = undistorted.shape[1]    
-        
-        original = original[0:height,0:width]
+        width = undistorted.shape[1]
+
+        original = original[0:height, 0:width]
         subtract = cv.subtract(original, undistorted)
         filename = os.path.splitext(filename)[0]
         cv.imwrite(os.path.join("test_images/", filename + "subtract.png"), subtract)

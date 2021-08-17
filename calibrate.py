@@ -6,7 +6,7 @@ import h5py
 
 
 class Calibrate:
-    def __init__(self,x,y):
+    def __init__(self, x, y):
         self.chessBoardSize = (x, y)
         # This value should be change according to the chessBoardSize being used to calibrate the camera
         self.objpoints = None
@@ -18,7 +18,7 @@ class Calibrate:
         self.tvecs = None
         self.RegionOfInterest = None
 
-    def calibrate_camera(self,delay):
+    def calibrate_camera(self, delay):
         # termination criteria
         criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
