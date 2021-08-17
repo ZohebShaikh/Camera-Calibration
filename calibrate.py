@@ -9,8 +9,8 @@ import h5py
 
 
 class Calibrate:
-    def __init__(self):
-        self.chessBoardSize = (7, 9)
+    def __init__(self,x,y):
+        self.chessBoardSize = (x, y)
         # This value should be change according to the chessBoardSize being used to calibrate the camera
         self.objpoints = None
         self.imgpoints = None
@@ -21,7 +21,7 @@ class Calibrate:
         self.tvecs = None
         self.RegionOfInterest = None
 
-    def calibrate_camera(self):
+    def calibrate_camera(self,delay):
         # termination criteria
         criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
@@ -52,8 +52,8 @@ class Calibrate:
                 self.imgpoints.append(corners)
                 # Draw and display the corners
                 cv.drawChessboardCorners(img_color, self.chessBoardSize, corners2, ret)
-                cv.imshow("img", img_color)
-                cv.waitKey(1)
+                cv.imshow("Calibration Images with Chessborad Corners", img_color)
+                cv.waitKey(delay)
             else:
                 print("Not found")
         cv.destroyAllWindows()
@@ -87,7 +87,7 @@ class Calibrate:
             )
             error = cv.norm(self.imgpoints[i], imgpoints2, cv.NORM_L2) / len(imgpoints2)
             mean_error += error
-        print("total error: {}".format(mean_error / len(self.objpoints)))
+        return mean_error / len(self.objpoints)
 
     def storeCalibrationResult(self, filename):
         objpoints = np.array(self.objpoints)
