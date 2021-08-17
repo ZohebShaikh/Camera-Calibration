@@ -13,6 +13,7 @@ class RemoveDistortion:
 
     def undistort(self, filename):
         img = cv.imread(os.path.join("test_images/", filename))
+        filename = os.path.splitext(filename)[0]
         # undistort
         dst = cv.undistort(
             img,
@@ -25,11 +26,12 @@ class RemoveDistortion:
         x, y, w, h = self.calibrate.RegionOfInterest
         dst = dst[y : y + h, x : x + w]
         cv.imwrite(
-            os.path.join("test_images/", filename + "_undistorted_method_2.png"), dst
+            os.path.join("test_images/", filename + "_undistorted.png"), dst
         )
 
     def undistort_method_2(self, filename):
         img = cv.imread(os.path.join("test_images/", filename))
+        filename = os.path.splitext(filename)[0]
         # undistort
         x, y, w, h = self.calibrate.RegionOfInterest
         mapx, mapy = cv.initUndistortRectifyMap(
@@ -50,12 +52,10 @@ class RemoveDistortion:
     def difference(self, filename, compare):
         original = cv.imread(os.path.join("test_images/", filename))
         undistorted = cv.imread(os.path.join("test_images/", compare))
-        print(original.shape)
-        print(undistorted.shape)
         height = undistorted.shape[0]
         width = undistorted.shape[1]    
         
         original = original[0:height,0:width]
-        print(original.shape)
         subtract = cv.subtract(original, undistorted)
+        filename = os.path.splitext(filename)[0]
         cv.imwrite(os.path.join("test_images/", filename + "subtract.png"), subtract)
