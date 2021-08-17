@@ -52,13 +52,13 @@ Camera configurations are stored as HDF5 file , we can view the contents of the 
 
 Here is a screenshot of the HDF5 file.
 
-![Screenshot](docs/media/hdf5Viewer.png)
+![HDF5file](docs/media/hdf5Viewer.png)
 
 ### 
 
 ### Example of  undistorted image using this program:
 
-![Screenshot](docs/media/corrected.png)
+![corrected](docs/media/corrected.png)
 
 ### References 
 
