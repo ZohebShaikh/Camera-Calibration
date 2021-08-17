@@ -2,7 +2,7 @@ from calibrate import Calibrate
 from removeDistortion import RemoveDistortion
 
 if __name__ == "__main__":
-    
+
     calibrate = Calibrate(7,9) # 7 and 9 are the dimensions of the chessboard used for camera calibration
     
     calibrate.calibrate_camera(1000) # we will have a 5 second delay in opencv

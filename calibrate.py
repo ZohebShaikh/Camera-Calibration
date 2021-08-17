@@ -1,6 +1,3 @@
-# https://docs.opencv.org/4.5.2/dc/dbb/tutorial_py_calibration.html
-# OpenCV reference page
-
 import os
 import glob
 import cv2 as cv
@@ -52,7 +49,7 @@ class Calibrate:
                 self.imgpoints.append(corners)
                 # Draw and display the corners
                 cv.drawChessboardCorners(img_color, self.chessBoardSize, corners2, ret)
-                cv.imshow("Calibration Images with Chessborad Corners", img_color)
+                cv.imshow("Calibration Images with Chessboard Corners", img_color)
                 cv.waitKey(delay)
             else:
                 print("Not found")
